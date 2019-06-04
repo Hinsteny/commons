@@ -11,8 +11,8 @@ public class ByteUtil {
     /**
      * translate bytes arrays to hex-string
      *
-     * @param bytes
-     * @return
+     * @param bytes 输入内容
+     * @return result
      */
     public static String byteToStr(byte[] bytes) {
         final StringBuilder sbr = new StringBuilder();
@@ -27,8 +27,8 @@ public class ByteUtil {
     /**
      * translate bytes arrays to hex-string
      *
-     * @param bytes
-     * @return
+     * @param bytes 输入内容
+     * @return result
      */
     public static String byteToHex(byte[] bytes) {
         return byteToHex(bytes, false);
@@ -37,9 +37,9 @@ public class ByteUtil {
     /**
      * translate bytes arrays to hex-string and to uppercase
      *
-     * @param bytes
-     * @param toUpperCase
-     * @return
+     * @param bytes 输入内容
+     * @param toUpperCase 转为大写
+     * @return result
      */
     public static String byteToHex(byte[] bytes, boolean toUpperCase) {
         StringBuilder hex = new StringBuilder();
@@ -58,8 +58,8 @@ public class ByteUtil {
     /**
      * translate hex-string to bytes
      *
-     * @param source
-     * @return
+     * @param source 输入内容
+     * @return result
      */
     public static byte[] hexTBytes(String source) {
         if (null == source || source.length() % 2 != 0) {
@@ -75,8 +75,8 @@ public class ByteUtil {
     /**
      * translate hex-bytes to bytes
      *
-     * @param data
-     * @return
+     * @param data 输入内容
+     * @return result
      */
     public static byte[] hexTBytes(byte[] data) {
         if (null == data || data.length % 2 != 0) {

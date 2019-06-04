@@ -1,6 +1,7 @@
 /**
  * @author Hinsteny
  * @version module-info: module-info 2019-05-09 16:05 All rights reserved.$
+ * @since 9
  */
 module org.github.hinsteny.commons.core {
 

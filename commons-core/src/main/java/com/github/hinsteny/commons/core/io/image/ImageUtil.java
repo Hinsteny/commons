@@ -36,10 +36,12 @@ public class ImageUtil {
 
     /**
      * 缩放图像至 指定的高度和宽度
+     *
      * @param srcImageFile 源图像文件地址
      * @param targetImageFile 缩放后的图像地址
      * @param height 缩放后的高度
      * @param width 缩放后的宽度
+     * @return result
      */
     public static boolean scale(String srcImageFile, String targetImageFile, int width, int height) {
         boolean result = false;
@@ -63,10 +65,12 @@ public class ImageUtil {
 
     /**
      * 缩放图像（按比例缩放）,改变图像分辨率
+     *
      * @param srcImageFile 源图像文件地址
      * @param targetImageFile 缩放后的图像地址
      * @param scale 缩放比例
      * @param flag 缩放选择:true 放大; false 缩小;
+     * @return result
      */
     public static boolean scaleByRatio(String srcImageFile, String targetImageFile, int scale, boolean flag) {
         boolean result = false;
@@ -97,11 +101,13 @@ public class ImageUtil {
 
     /**
      * 按原图高宽比缩放图像至 指定高度和宽度(优先满足所给width/height 更贴近原图比例的一方)
+     *
      * @param srcImageFile 源图像文件地址
      * @param targetImageFile 缩放后的图像地址
      * @param height 缩放后的高度
      * @param width 缩放后的宽度
      * @param bb 宽高比与原图不同时是否需要补白：true为补白; false为不补白;
+     * @return result
      */
     public static boolean scaleBySize(String srcImageFile, String targetImageFile, int width, int height, boolean bb) {
         boolean result = false;
@@ -131,9 +137,11 @@ public class ImageUtil {
 
     /**
      * 图像切割(按指定起点坐标和宽高切割)
+     *
      * @param srcImageFile 源图像地址
      * @param targetImageFile 切片后的图像地址
      * @param incise 目标切片的起始坐标和长宽大小
+     * @return result
      */
     public static boolean cut(String srcImageFile, String targetImageFile, Incise incise) {
         boolean result = false;
@@ -165,11 +173,12 @@ public class ImageUtil {
     }
 
     /**
-     * 图像类型转换：GIF->JPG、GIF->PNG、PNG->JPG、PNG->GIF(X)、BMP->PNG
+     * 图像类型转换：GIF-》JPG、GIF-》PNG、PNG-》JPG、PNG-》GIF(X)、BMP-》PNG
+     *
      * @param srcImageFile 源图像地址
      * @param srcType 源图片格式, 包含格式非正式名称的 String：如JPG、JPEG、GIF等
-
      * @param destImageFile 目标图像地址
+     * @return result
      */
     public final static boolean convert(String srcImageFile, ImageType srcType, String destImageFile) {
         boolean result = false;
@@ -185,9 +194,11 @@ public class ImageUtil {
 
     /**
      * 彩色转为黑白
+     *
      * @param srcImageFile 源图像地址
      * @param srcType 源图像类型
      * @param destImageFile 目标图像地址
+     * @return result
      */
     public final static boolean gray(String srcImageFile, ImageType srcType, String destImageFile) {
         boolean result = false;
@@ -206,12 +217,14 @@ public class ImageUtil {
 
     /**
      * 给图片添加文字水印
+     *
      * @param srcImageFile 源图像地址
      * @param destImageFile 目标图像地址
      * @param text 水印文字及属性
      * @param posi 文字坐标及透明度
+     * @return result
      */
-    public final static boolean pressText( String srcImageFile, String destImageFile, Text text, MaskPosi posi) {
+    public final static boolean pressText(String srcImageFile, String destImageFile, Text text, MaskPosi posi) {
         boolean result = false;
         try {
             Image src = ImageIO.read(getImageFile(srcImageFile));
@@ -237,12 +250,14 @@ public class ImageUtil {
 
     /**
      * 给图片添加图片水印
+     *
      * @param maskImg 水印图片
      * @param srcImageFile 源图像地址
      * @param destImageFile 目标图像地址
      * @param posi 目标图像坐标及透明度
+     * @return result
      */
-    public final static boolean pressImage(String maskImg, String srcImageFile,String destImageFile, MaskPosi posi) {
+    public final static boolean pressImage(String maskImg, String srcImageFile, String destImageFile, MaskPosi posi) {
         boolean result = false;
         try {
             Image src = ImageIO.read(getImageFile(srcImageFile));
@@ -269,14 +284,16 @@ public class ImageUtil {
 
     /**
      * 创建图片缩略图(等比缩放 无失真缩放)
+     *
      * @param srcImageFile 源图片文件完整路径
      * @param destImageFile 目标图片文件完整路径
      * @param width 缩放的宽度
      * @param height 缩放的高度
-     * @param flag  true 按照实际长宽输出  如果 false 按照比例进行无失真压缩
+     * @param flag true 按照实际长宽输出  如果 false 按照比例进行无失真压缩
+     * @return result
      */
     public static boolean createThumbnail(String srcImageFile, String destImageFile, float width, float height, boolean flag) {
-        boolean result = false ;
+        boolean result = false;
         try {
             BufferedImage image = ImageIO.read(getImageFile(srcImageFile));
             // 获得缩放的比例
@@ -290,9 +307,9 @@ public class ImageUtil {
                 }
             }
             int newWidth = flag ? (int) width : (int) (image.getWidth() * ratio);
-            int newHeight = flag ? (int)height : (int) (image.getHeight() * ratio);
+            int newHeight = flag ? (int) height : (int) (image.getHeight() * ratio);
             BufferedImage bfImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_RGB);
-            result = bfImage.getGraphics().drawImage(image.getScaledInstance(newWidth, newHeight,Image.SCALE_SMOOTH), 0, 0, null);
+            result = bfImage.getGraphics().drawImage(image.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH), 0, 0, null);
             ImageIO.write(bfImage, ImageType.JPG.getName(), new File(destImageFile));
         } catch (Exception e) {
             LOGGER.error(String.format("ImageUtil createThumbnail from %s to %s failed!", srcImageFile, destImageFile), e);
@@ -302,8 +319,9 @@ public class ImageUtil {
 
     /**
      * 获取图片信息
+     *
      * @param srcImageFile 需要读取的文件
-     * @return
+     * @return 图片对象
      */
     public static ImageInfo readImgInfo(String srcImageFile) {
         ImageInfo imageInfo = null;
@@ -312,7 +330,7 @@ public class ImageUtil {
             imageInfo = new ImageInfo();
             imageInfo.setWidth(src.getWidth(null));
             imageInfo.setHeight(src.getHeight(null));
-        } catch (Exception e){
+        } catch (Exception e) {
             LOGGER.error(String.format("ImageUtil readImgInfo from %s failed!", srcImageFile), e);
         }
         return imageInfo;
@@ -320,13 +338,14 @@ public class ImageUtil {
 
     /**
      * 顺时针旋转图片指定角度
+     *
      * @param srcImageFile 源文件
      * @param destImageFile 目标文件
      * @param angel 角度
-     * @return
+     * @return result
      */
     public static boolean rotate(String srcImageFile, String destImageFile, int angel) {
-        boolean result = false ;
+        boolean result = false;
         try {
             BufferedImage src = ImageIO.read(getImageFile(srcImageFile));
             int src_width = src.getWidth(null);
@@ -337,7 +356,7 @@ public class ImageUtil {
             BufferedImage res = new BufferedImage(rect_des.width, rect_des.height, BufferedImage.TYPE_INT_RGB);
             Graphics2D g2 = res.createGraphics();
             // transform
-            g2.translate((rect_des.width - src_width) / 2,(rect_des.height - src_height) / 2);
+            g2.translate((rect_des.width - src_width) / 2, (rect_des.height - src_height) / 2);
             g2.rotate(Math.toRadians(angel), src_width / 2, src_height / 2);
             g2.drawImage(src, null, null);
             ImageIO.write(res, ImageType.JPG.getName(), new File(destImageFile));
@@ -351,11 +370,11 @@ public class ImageUtil {
 
     /**
      * 判断图片原始文件是否有效
+     *
      * @param srcImageFile 源文件
-     * @return
-     * @throws FileNotFoundException
+     * @return 文件对象
      */
-    private static File getImageFile(String srcImageFile) throws FileNotFoundException{
+    private static File getImageFile(String srcImageFile) throws FileNotFoundException {
         File f = new File(srcImageFile);
         if (!f.exists()) {
             throw new FileNotFoundException("srcImageFile:" + srcImageFile + "not fund exception!");
@@ -367,14 +386,15 @@ public class ImageUtil {
 
     /**
      * 获取图片旋转角度后的height和width
+     *
      * @param src 源
      * @param angel 角度
-     * @return
+     * @return result
      */
     public static Rectangle calcRotatedSize(Rectangle src, int angel) {
         // if angel is greater than 90 degree, we need to do some conversion
         if (angel >= 90) {
-            if(angel / 90 % 2 == 1) {
+            if (angel / 90 % 2 == 1) {
                 int temp = src.height;
                 src.height = src.width;
                 src.width = temp;
@@ -397,10 +417,11 @@ public class ImageUtil {
 
     /**
      * 给图片补空白
+     *
      * @param itemp 图片对象
      * @param width 宽度
      * @param height 高度
-     * @return
+     * @return result
      */
     private static Image pdddingImage(Image itemp, int width, int height) {
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -411,8 +432,7 @@ public class ImageUtil {
             g.drawImage(itemp, 0, (height - itemp.getHeight(null)) / 2,
                 itemp.getWidth(null), itemp.getHeight(null),
                 Color.white, null);
-        }
-        else {
+        } else {
             g.drawImage(itemp, (width - itemp.getWidth(null)) / 2, 0,
                 itemp.getWidth(null), itemp.getHeight(null),
                 Color.white, null);
@@ -424,7 +444,7 @@ public class ImageUtil {
     /**
      * 图片文字水印参数体
      */
-    public static class Text{
+    public static class Text {
 
         /**
          * 水印文字
@@ -475,7 +495,7 @@ public class ImageUtil {
     /**
      * 图片水印定位及透明度参数体(定位以图片左上角为0,0)
      */
-    public static class MaskPosi{
+    public static class MaskPosi {
 
         /**
          * 文字起始x坐标

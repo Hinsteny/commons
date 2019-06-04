@@ -24,6 +24,7 @@ public class CSVReader {
      * 构建csv reader
      *
      * @param stream csv文件输入流
+     * @param charset 编码
      */
     public CSVReader(InputStream stream, Charset charset) {
         this.reader = new BufferedReader(new InputStreamReader(stream, charset));
@@ -33,6 +34,7 @@ public class CSVReader {
      * 返回下一个csv行，如没有更多内容时返回<code>null</code>
      *
      * @return 下一个csv行或<code>null</code>
+     * @throws IOException IO异常
      */
     public ReadableCSVLine nextCSVLine() throws IOException {
         String lineStr = this.reader.readLine();
@@ -45,6 +47,8 @@ public class CSVReader {
 
     /**
      * 关闭csv资源
+     *
+     * @throws IOException IO异常
      */
     public void close() throws IOException {
         if (this.reader != null) {

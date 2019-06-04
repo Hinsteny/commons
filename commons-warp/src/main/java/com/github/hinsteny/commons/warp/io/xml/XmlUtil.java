@@ -32,11 +32,11 @@ public class XmlUtil {
      *    属性值为空字符串("")即可, 推荐使用前者;
      *
      * @param pojo 要被转化的对象
-     * @param hasHeader 最后生成的xml是否包含头, <?xml version="1.0" encoding="utf-8"?>
-     * @param hasCData  最后生成的xml节点值是否被 <![CDATA[xxx]]> 包裹, 在对象属性的内容中包含被xml禁止使用的字符时, 可以用它进行避免解析;
-     * @return
-     * @throws JAXBException
-     * @throws XMLStreamException
+     * @param hasHeader 最后生成的xml是否包含头, <!-- <?xml version="1.0" encoding="utf-8"?> -->
+     * @param hasCData  最后生成的xml节点值是否被 <!--  <![CDATA[xxx]]> --> 包裹, 在对象属性的内容中包含被xml禁止使用的字符时, 可以用它进行避免解析;
+     * @return 字符串结果
+     * @throws JAXBException 异常
+     * @throws XMLStreamException 异常
      */
     public static String transformPojoToXml(Object pojo, boolean hasHeader, boolean hasCData) throws JAXBException, XMLStreamException {
         if (null == pojo || ObjectUtil.isPrimitive((pojo).getClass()) || String.class == pojo.getClass()) {

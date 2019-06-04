@@ -24,16 +24,17 @@ public class ZipFileUtil {
 
     /**
      * 把一个文件夹中的文件添加到一个指定的压缩文件中
+     *
      * @param fileFolder 需要被压缩的文件夹
      * @param destZipFilePath 压缩后的压缩文件路径
-     * @throws IOException
+     * @throws IOException IO异常
      */
     public static void zipFile(String fileFolder, String destZipFilePath) throws IOException {
         File fileToZip = new File(fileFolder);
         if (!destZipFilePath.endsWith(ZIP)) {
             destZipFilePath = destZipFilePath.concat(File.separator).concat(fileToZip.getName()).concat(ZIP);
         }
-        try (ZipOutputStream zipOut = new ZipOutputStream(new FileOutputStream(destZipFilePath))){
+        try (ZipOutputStream zipOut = new ZipOutputStream(new FileOutputStream(destZipFilePath))) {
             zipFile(fileToZip, fileToZip.getName(), zipOut);
         } catch (IOException e) {
             LOGGER.warn("Unzip file exception", e);
@@ -43,10 +44,11 @@ public class ZipFileUtil {
 
     /**
      * 压缩文件
+     *
      * @param fileToZip 目标压缩文件
-     * @param fileName
-     * @param zipOut
-     * @throws IOException
+     * @param fileName 文件名称
+     * @param zipOut 输出目标
+     * @throws IOException IO异常
      */
     private static void zipFile(File fileToZip, String fileName, ZipOutputStream zipOut) throws IOException {
         if (fileToZip.isHidden()) {
@@ -83,6 +85,8 @@ public class ZipFileUtil {
      * @param zipFilePath 待解压的zip文件
      * @param destDir 指定目录
      * @param inheritFolder 是否解压到子目录
+     * @throws IOException IO异常
+     * @return result
      */
     public static String unZipFiles(String zipFilePath, String destDir, boolean inheritFolder) throws IOException {
         File dir = new File(destDir);
@@ -147,8 +151,9 @@ public class ZipFileUtil {
 
     /**
      * 判断文件名是否为文件夹
-     * @param fileName
-     * @return
+     *
+     * @param fileName 文件名
+     * @return result
      */
     private static boolean judgeIsFolder(String fileName) {
         return fileName.endsWith(File.separator);

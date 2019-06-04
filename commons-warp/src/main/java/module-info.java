@@ -1,8 +1,6 @@
 /**
  * @author Hinsteny
  * @version module-info: module-info 2019-05-09 15:57 All rights reserved.$
- *
- * @moduleGraph
  * @since 9
  */
 module com.github.hinsteny.commons.warp {

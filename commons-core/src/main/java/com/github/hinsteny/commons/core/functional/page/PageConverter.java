@@ -17,6 +17,9 @@ public class PageConverter {
      *
      * @param paginator 原始分页对象
      * @param function 转换分页列表数据的方法
+     * @param <T> 转化后值
+     * @param <E> 被转化值
+     * @return 转化后对象列表
      */
     public static <T, E> Paginator<T> convert(Paginator<E> paginator, Function<List<E>, List<T>> function) {
         return new Paginator<T>(paginator.getTotalItemsCount(), function.apply(paginator.getItems()),
@@ -29,6 +32,9 @@ public class PageConverter {
      * @param paginator 原始分页对象
      * @param function 转换分页列表数据的方法
      * @param consumer 转换后需要处理的逻辑
+     * @param <T> 转化后值
+     * @param <E> 被转化值
+     * @return 转化后对象列表
      */
     public static <T, E> Paginator<T> convert(Paginator<E> paginator, Function<List<E>, List<T>> function, Consumer<T> consumer) {
         List<T> target = function.apply(paginator.getItems());

@@ -21,14 +21,14 @@ public interface CSVLine {
     /**
      * 是否还有下一个token
      *
-     * @return
+     * @return 布尔值
      */
     boolean hasMore();
 
     /**
      * 返回下一个token
      *
-     * @return
+     * @return next-token
      */
     String nextToken();
 

@@ -242,6 +242,9 @@
               <useReleaseProfile>false</useReleaseProfile>
               <releaseProfiles>release</releaseProfiles>
               <goals>deploy</goals>
+              <pushChanges>false</pushChanges>
+              <mavenExecutorId>forked-path</mavenExecutorId>
+              <arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
             </configuration>
           </plugin>
           <!-- compiler -->
@@ -284,7 +287,6 @@
               </execution>
             </executions>
             <configuration>
-              <aggregate>true</aggregate>
               <charset>${project.build.sourceEncoding}</charset>
               <encoding>${project.build.sourceEncoding}</encoding>
               <docencoding>${project.build.sourceEncoding}</docencoding>

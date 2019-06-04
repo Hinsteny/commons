@@ -12,6 +12,9 @@ public class FileUtil {
 
     /**
      * 判断路径所指文件是否存在
+     *
+     * @param filePath 文件路径
+     * @return result
      */
     public static boolean isFileExists(String filePath) {
         if (StringUtil.isBlank(filePath)) {
@@ -23,6 +26,9 @@ public class FileUtil {
 
     /**
      * 获取文件名称
+     *
+     * @param filePath 文件路径
+     * @return result
      */
     public static String getFileName(String filePath) {
         if (!isFileExists(filePath)) {
@@ -34,6 +40,9 @@ public class FileUtil {
 
     /**
      * 获取文件大小
+     *
+     * @param filePath 文件路径
+     * @return result
      */
     public static long getFileSize(String filePath) {
         if (!isFileExists(filePath)) {
@@ -45,8 +54,9 @@ public class FileUtil {
 
     /**
      * 删除路径
-     * @param filePath
-     * @return
+     *
+     * @param filePath 文件路径
+     * @return result
      */
     public static boolean delete(String filePath) {
         if (!isFileExists(filePath)) {
@@ -63,8 +73,9 @@ public class FileUtil {
 
     /**
      * 删除文件
-     * @param file
-     * @return
+     *
+     * @param file 文件
+     * @return result
      */
     private static boolean deleteFile(File file) {
         if (file.exists()) {
@@ -75,8 +86,9 @@ public class FileUtil {
 
     /**
      * 递归删除文件目录
-     * @param dirFile
-     * @return
+     *
+     * @param dirFile 文件目录
+     * @return result
      */
     private static boolean deleteDirectory(File dirFile) {
         if (dirFile.exists()) {

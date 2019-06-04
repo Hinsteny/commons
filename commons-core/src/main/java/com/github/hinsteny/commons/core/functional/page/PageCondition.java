@@ -126,6 +126,8 @@ public class PageCondition {
 
         /**
          * 构建分页对象
+         *
+         * @return 分页对象
          */
         public PageCondition build() {
             StringBuilder sortBuilder = new StringBuilder();

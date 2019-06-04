@@ -37,7 +37,7 @@ public class StringUtil {
      * @param start  the start index in origin
      * @param end  the end index in origin
      * @param shadow  the char use to be replace
-     * @return
+     * @return result
      * @since 1.0
      */
     public static String replaceSensInfo(String origin, Integer start, Integer end, Character shadow) {
@@ -62,10 +62,11 @@ public class StringUtil {
 
     /**
      * 用指定字符填充字符数组
-     * @param value
-     * @param srcBegin
-     * @param srcEnd
-     * @param repeat
+     * @param value 原始内容
+     * @param srcBegin 开始位置
+     * @param srcEnd 结束位置
+     * @param repeat 填充字符
+     * @return result
      */
     public static char[] repeatChar(char[] value, int srcBegin, int srcEnd, char repeat) {
         if (srcBegin < 0) {
@@ -123,8 +124,8 @@ public class StringUtil {
 
     /**
      * 判断字符串不为空
-     * @param str
-     * @return
+     * @param str 字符串
+     * @return result
      */
     public static boolean isNotBlank(String str) {
         return !isBlank(str);
@@ -280,15 +281,14 @@ public class StringUtil {
      * 拼接集合元素为字符串，使用{@code delimiter}参数作为分隔符。当集合为{@code null}，直接返回{@code null}。
      * 如果分隔符{@code delimiter}为{@code null}，则使用{@link #EMPTY}作为分隔符。
      * <pre>
-     *     List<String> list = new ArrayList<String>();
      *     list.add("a");
      *     list.add("b");
      *     list.add("c");
      *     StringUtils.join(list, ",") = "a,b,c";
      * </pre>
+     * @param <T> 集合类型
      * @param collection 需要拼接的集合
      * @param delimiter 元素之间拼接时的分隔符
-     * @param <T> 集合类型
      * @return 拼接后的字符串
      */
     public static <T> String join(Collection<T> collection, String delimiter) {
@@ -350,8 +350,8 @@ public class StringUtil {
 
     /**
      * 获取多个字符串最长的公共字符串前缀
-     * @param strings
-     * @return
+     * @param strings 字符串数组
+     * @return result
      */
     public static String getLongestCommonPrefix(String[] strings) {
         if (strings == null || strings.length == 0) {
@@ -377,8 +377,8 @@ public class StringUtil {
 
     /**
      * byte数组转化为16进制字符串
-     * @param bytes
-     * @return
+     * @param bytes 原始数据
+     * @return result
      */
     public static String byteToHexString(byte[] bytes){
         StringBuffer sb = new StringBuffer();

@@ -22,6 +22,8 @@ public class IPUtil {
 
     /**
      * 获取JVM的IP
+     *
+     * @return ip
      */
     public static String getVMIp() {
         if (StringUtil.isNullOrEmpty(VM_IP)) {

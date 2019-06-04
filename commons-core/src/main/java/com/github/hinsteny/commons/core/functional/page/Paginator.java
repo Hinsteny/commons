@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @param <T> the type of elements in this Paginator
+ *
  * @author Hinsteny
  * @version Paginator: Paginator 2019-05-08 17:02 All rights reserved.$
  */
@@ -36,6 +38,8 @@ public class Paginator<T> implements Serializable {
      * 构造空数据的分页对象，常用于在已知没有数据的情况下使用。
      *
      * @param pageSize 分页大小
+     * @param <T> 泛型类型
+     * @return 分页对象
      */
     public static <T> Paginator<T> ofEmpty(int pageSize) {
         return new Paginator(0, new ArrayList<T>(), 1, pageSize);
@@ -53,6 +57,10 @@ public class Paginator<T> implements Serializable {
 
     /**
      * 通过分页条件来构造分页对象。
+     *
+     * @param totalItemsCount 总记录数
+     * @param items 记录列表
+     * @param pageCondition 分页条件
      */
     public Paginator(long totalItemsCount, List<T> items, PageCondition pageCondition) {
         this.totalItemsCount = totalItemsCount;
@@ -63,6 +71,11 @@ public class Paginator<T> implements Serializable {
 
     /**
      * 通过页码和页面尺寸来构建分页对象
+     *
+     * @param totalItemsCount 总记录数
+     * @param items 记录列表
+     * @param currentPageNum 当前页
+     * @param pageSize 页大小
      */
     public Paginator(long totalItemsCount, List<T> items, int currentPageNum, int pageSize) {
         this.totalItemsCount = totalItemsCount;
@@ -73,6 +86,7 @@ public class Paginator<T> implements Serializable {
 
     /**
      * 获取数据
+     * @return 分页对象
      */
     public List<T> getItems() {
         return items;
@@ -80,6 +94,7 @@ public class Paginator<T> implements Serializable {
 
     /**
      * 获取总页数
+     * @return 总数
      */
     public long getTotalPageCount() {
         return ((totalItemsCount / pageSize) + (totalItemsCount % pageSize == 0 ? 0 : 1));
@@ -87,6 +102,7 @@ public class Paginator<T> implements Serializable {
 
     /**
      * 获取总条数
+     * @return 总数
      */
     public long getTotalItemsCount() {
         return totalItemsCount;
@@ -94,6 +110,7 @@ public class Paginator<T> implements Serializable {
 
     /**
      * 获取当前页码
+     * @return 页码
      */
     public int getCurrentPageNum() {
         if (currentPageNum <= 1) {
@@ -104,6 +121,7 @@ public class Paginator<T> implements Serializable {
 
     /**
      * 获取页面条数大小
+     * @return 页大小
      */
     public int getPageSize() {
         if (pageSize <= 0) {
@@ -114,6 +132,7 @@ public class Paginator<T> implements Serializable {
 
     /**
      * 获取下一页页码
+     * @return 页码
      */
     public int getNextPageNum() {
         if (this.currentPageNum < getTotalPageCount()) {
@@ -126,6 +145,7 @@ public class Paginator<T> implements Serializable {
 
     /**
      * 获取前一页页码
+     * @return 页码
      */
     public int getPreviousPageNum() {
         if (currentPageNum <= 1) {

@@ -21,6 +21,7 @@ public class BigDecimalUtil {
      * 格式化浮点数
      *
      * @param value 输入值
+     * @return result
      */
     public static String formatMoney(BigDecimal value) {
         return formatRoundUp(value, MONEY_POINT, RoundingMode.HALF_DOWN);
@@ -31,6 +32,7 @@ public class BigDecimalUtil {
      *
      * @param value 输入值
      * @param point 小数位数
+     * @return result
      */
     public static String formatRoundUp(BigDecimal value, int point) {
         return formatRoundUp(value, point, RoundingMode.HALF_UP);
@@ -42,6 +44,7 @@ public class BigDecimalUtil {
      * @param value 输入值
      * @param point 小数位数
      * @param roundingMode 舍位方式
+     * @return result
      */
     public static String formatRoundUp(BigDecimal value, int point, RoundingMode roundingMode) {
         NumberFormat nf = NumberFormat.getInstance();
@@ -59,7 +62,7 @@ public class BigDecimalUtil {
      *
      * @param value 输入值
      * @param point 小数位数
-     * @return double
+     * @return result
      */
     public static Double format(double value, int point) {
         BigDecimal b = new BigDecimal(value);
@@ -71,6 +74,7 @@ public class BigDecimalUtil {
      *
      * @param value 输入值
      * @param point 小数位数
+     * @return result
      */
     public static String formatRoundUp(double value, int point) {
         return formatRoundUp(new BigDecimal(value), point, RoundingMode.HALF_UP);
@@ -82,6 +86,7 @@ public class BigDecimalUtil {
      * @param value 输入值
      * @param point 小数位数
      * @param roundingMode 舍位方式
+     * @return result
      */
     public static String formatRoundUp(double value, int point, RoundingMode roundingMode) {
         return formatRoundUp(new BigDecimal(value), point, roundingMode);
@@ -92,7 +97,7 @@ public class BigDecimalUtil {
      *
      * @param addend 加数
      * @param augend 被加数
-     * @return double
+     * @return result
      */
     public static Double add(double addend, double augend) {
         BigDecimal m = new BigDecimal(Double.toString(addend));
@@ -105,7 +110,7 @@ public class BigDecimalUtil {
      *
      * @param subtrahend 减数
      * @param bySubtrahend 被加数
-     * @return double
+     * @return result
      */
     public static Double subtract(double subtrahend, double bySubtrahend) {
         BigDecimal m = new BigDecimal(Double.toString(subtrahend));
@@ -118,7 +123,7 @@ public class BigDecimalUtil {
      *
      * @param multiplier 减数
      * @param multiplicand 被加数
-     * @return double
+     * @return result
      */
     public static Double multiply(double multiplier, double multiplicand) {
         BigDecimal m = new BigDecimal(Double.toString(multiplier));
@@ -131,7 +136,7 @@ public class BigDecimalUtil {
      *
      * @param divisor 减数
      * @param dividend 被加数
-     * @return double
+     * @return result
      */
     public static Double divide(double divisor, double dividend) {
         BigDecimal m = new BigDecimal(Double.toString(divisor));
@@ -144,7 +149,7 @@ public class BigDecimalUtil {
      *
      * @param former  前者
      * @param latter  后者
-     * @return double
+     * @return result
      */
     public int compare(double former , double latter) {
         BigDecimal m = new BigDecimal(Double.toString(former ));

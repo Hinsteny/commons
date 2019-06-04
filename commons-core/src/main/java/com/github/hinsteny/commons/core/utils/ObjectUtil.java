@@ -17,7 +17,7 @@ public class ObjectUtil {
      *                        ||||||
      * [Byte, Short, Integer, Long, Float, Double, Boolean, Character]
      * @param cls 被判断的类型
-     * @return
+     * @return result
      */
     public static boolean isPrimitive(Class cls) {
         try {

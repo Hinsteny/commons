@@ -18,9 +18,9 @@ public class PageFetcher {
      * @param counter count计算方法
      * @param listFetcher 列表数据获取
      * @param dataConverter 数据转换，通常是DO列表转换为Model列表
-     * @param <T>
-     * @param <R>
-     * @return
+     * @param <T> 入参泛型
+     * @param <R> 出参泛型
+     * @return 获取到的结果
      */
     public static <T, R> Paginator<R> fetchPageData(PageCondition pageCondition, Supplier<Long> counter,
         Supplier<List<T>> listFetcher,

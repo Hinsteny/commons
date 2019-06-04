@@ -27,7 +27,7 @@ public class WritableCSVLine implements CSVLine {
     /**
      * 增加一个token
      *
-     * @param token
+     * @param token 单元
      */
     public void appendToken(Object token) {
         if (formattedTokensStr.length() > 0) {
@@ -71,7 +71,7 @@ public class WritableCSVLine implements CSVLine {
     /**
      * 返回csv行对应的可写字符串
      *
-     * @return
+     * @return 内容
      */
     public String getFormattedTokensStr() {
         return formattedTokensStr.toString();
@@ -81,8 +81,8 @@ public class WritableCSVLine implements CSVLine {
     /**
      * 格式化token为可写的格式
      *
-     * @param token
-     * @return
+     * @param token 单元
+     * @return 内容
      */
     private String formatForPersistence(String token) {
         String formattedToken = token;

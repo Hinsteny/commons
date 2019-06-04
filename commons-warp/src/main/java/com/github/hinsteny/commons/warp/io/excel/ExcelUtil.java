@@ -31,9 +31,9 @@ public class ExcelUtil {
     private static String NULL_VALUE = "NULL";
 
     /**
-     * 导入: 从excel到SheetData. tbody data保存到 SheetData.dataList (List<List<String>>)
+     * 导入: 从excel到SheetData. tbody data保存到 SheetData.dataList
      * @param filePath 文件路径
-     * @return list List<Map<String,Object>>
+     * @return 工作表
      * @throws Exception 异常
      */
     public static SheetData convertSheetDataAsList(String filePath) throws Exception{
@@ -109,9 +109,9 @@ public class ExcelUtil {
     }
 
     /**
-     * 导入: 从excel到SheetData, tbody data保存到 SheetData.dataMap (List<Map<String,String>>)
+     * 导入: 从excel到SheetData, tbody data保存到 SheetData.dataMap
      * @param filePath 文件路径
-     * @return list List<Map<String,Object>>
+     * @return 工作表
      * @throws Exception 异常
      */
     public static SheetData convertSheetDataAsMap(String filePath) throws Exception {
@@ -194,9 +194,9 @@ public class ExcelUtil {
      * @param fieldNames  字段名称数组
      * @param <T> 实体类型
      * @return file 文件
+     * @throws Exception 异常
      */
-    public static <T> File export(String fileNamePath, String sheetName, List<T> list, String[] titles,
-        String[] fieldNames) throws Exception {
+    public static <T> File export(String fileNamePath, String sheetName, List<T> list, String[] titles, String[] fieldNames) throws Exception {
         //生成一个新的sheet,并以表名命名
         sheetName = StringUtil.isNullOrEmpty(sheetName) ? "sheet1" : sheetName;
 

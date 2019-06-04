@@ -50,6 +50,8 @@ public abstract class AssertUtil {
 
     /**
      * 断言数字是否为正数（大于0），若小于等于0，则抛出异常{@link AssertionError}
+     *
+     * @param number 数字
      */
     public static void assertPositiveNumber(Number number) {
         assertPositiveNumber(number, null);
@@ -57,6 +59,9 @@ public abstract class AssertUtil {
 
     /**
      * 断言数字是否为正数（大于0），若小于等于0，则抛出异常{@link AssertionError}
+     *
+     * @param number 数字
+     * @param message 提示信息
      */
     public static void assertPositiveNumber(Number number, String message) {
         if (number == null) {
@@ -68,6 +73,8 @@ public abstract class AssertUtil {
 
     /**
      * 断言数字是否为正整数，若小于等于0或不是整数，则抛出异常{@link AssertionError}。注意这里的Integer并不是Java中的Integer，代表的是整数
+     *
+     * @param number 数字
      */
     public static void assertPositiveIntegerNumber(Number number) {
         assertPositiveIntegerNumber(number, null);
@@ -75,6 +82,9 @@ public abstract class AssertUtil {
 
     /**
      * 断言数字是否为正整数，若小于等于0或不是整数，则抛出异常{@link AssertionError}。注意这里的Integer并不是Java中的Integer，代表的是整数
+     *
+     * @param number 数字
+     * @param message 提示信息
      */
     public static void assertPositiveIntegerNumber(Number number, String message) {
         if (number == null) {
@@ -90,6 +100,8 @@ public abstract class AssertUtil {
 
     /**
      * 断言数字是否为大于或等于0的整数，若小于0或不是整数，则抛出异常{@link AssertionError}。注意这里的Integer并不是Java中的Integer，代表的是整数
+     *
+     * @param number 数字
      */
     public static void assertIntegerNumberGeZero(Number number) {
         assertIntegerNumberGeZero(number, null);
@@ -97,6 +109,9 @@ public abstract class AssertUtil {
 
     /**
      * 断言数字是否为大于或等于0的整数，若小于0或不是整数，则抛出异常{@link AssertionError}。注意这里的Integer并不是Java中的Integer，代表的是整数
+     *
+     * @param number 数字
+     * @param message 提示信息
      */
     public static void assertIntegerNumberGeZero(Number number, String message) {
         if (number == null) {
