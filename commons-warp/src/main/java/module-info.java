@@ -8,7 +8,7 @@ module com.github.hinsteny.commons.warp {
     requires java.xml;
     requires java.xml.bind;
 
-    requires org.github.hinsteny.commons.core;
+    requires com.github.hinsteny.commons.core;
 
     requires org.apache.logging.log4j;
 

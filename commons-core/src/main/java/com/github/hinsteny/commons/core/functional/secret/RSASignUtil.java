@@ -53,6 +53,7 @@ public class RSASignUtil {
      * </p>
      *
      * @return KeyPair
+     * @throws Exception 异常
      */
     public static KeyPair generateKeyPair() throws Exception {
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(KEY_ALGORITHM);
@@ -90,15 +91,26 @@ public class RSASignUtil {
     /**
      * 签名字符串
      *
-     * @param param       需要签名的数据
+     * @param param 需要签名的数据
      * @param privateKey 私钥(BASE64编码)
-     * @param charset    编码格式
+     * @param charset 编码格式
      * @return 签名结果(BASE64编码)
+     * @throws Exception 异常
      */
     public static String sign(Map<String, String> param, String privateKey, String charset) throws Exception {
         return sign(Algorithm.SHA1withRSA, buildParam(param), privateKey, charset);
     }
 
+    /**
+     * 签名字符串
+     *
+     * @param algorithm 签名算法
+     * @param param 需要签名的数据
+     * @param privateKey 私钥(BASE64编码)
+     * @param charset 编码格式
+     * @return 签名结果(BASE64编码)
+     * @throws Exception 异常
+     */
     public static String sign(Algorithm algorithm, Map<String, String> param, String privateKey, String charset) throws Exception {
         return sign(algorithm, buildParam(param), privateKey, charset);
     }
@@ -106,27 +118,39 @@ public class RSASignUtil {
     /**
      * 签名字符串
      *
-     * @param text       需要签名的字符串
+     * @param text 需要签名的字符串
      * @param privateKey 私钥(BASE64编码)
-     * @param charset    编码格式
+     * @param charset 编码格式
      * @return 签名结果(BASE64编码)
+     * @throws Exception 异常
      */
     public static String sign(String text, String privateKey, String charset) throws Exception {
         return doSign(Algorithm.SHA1withRSA, text, privateKey, charset);
     }
 
+    /**
+     * 签名字符串
+     *
+     * @param algorithm 签名算法
+     * @param text 需要签名的字符串
+     * @param privateKey 私钥(BASE64编码)
+     * @param charset 编码格式
+     * @return 签名结果(BASE64编码)
+     * @throws Exception 异常
+     */
     public static String sign(Algorithm algorithm, String text, String privateKey, String charset) throws Exception {
         return doSign(algorithm, text, privateKey, charset);
     }
 
     /**
      * 进行RSA签名
-     * @param algorithm
-     * @param text
-     * @param privateKey
-     * @param charset
-     * @return
-     * @throws Exception
+     *
+     * @param algorithm 签名算法
+     * @param text 需要签名的字符串
+     * @param privateKey 私钥(BASE64编码)
+     * @param charset 编码格式
+     * @return 签名结果(BASE64编码)
+     * @throws Exception 异常
      */
     private static String doSign(Algorithm algorithm, String text, String privateKey, String charset) throws Exception {
         byte[] keyBytes = Base64.getDecoder().decode(privateKey);
@@ -145,28 +169,42 @@ public class RSASignUtil {
     /**
      * 验签
      *
-     * @param text      需要签名的字符串
-     * @param sign      客户签名结果
+     * @param text 需要签名的字符串
+     * @param sign 客户签名结果
      * @param publicKey 公钥(BASE64编码)
-     * @param charset   编码格式
+     * @param charset 编码格式
      * @return 验签结果
+     * @throws Exception 异常
      */
     public static boolean verify(String text, String sign, String publicKey, String charset) throws Exception {
         return verify(Algorithm.SHA1withRSA, text, sign, publicKey, charset);
     }
 
+    /**
+     * 验签
+     *
+     * @param algorithm 签名算法
+     * @param text 需要签名的字符串
+     * @param sign 客户签名结果
+     * @param publicKey 公钥(BASE64编码)
+     * @param charset 编码格式
+     * @return 验签结果
+     * @throws Exception 异常
+     */
     public static boolean verify(Algorithm algorithm, String text, String sign, String publicKey, String charset) throws Exception {
         return doVerify(algorithm, text, sign, publicKey, charset);
     }
 
     /**
      * 进行RSA验签
-     * @param text
-     * @param sign
-     * @param publicKey
-     * @param charset
-     * @return
-     * @throws Exception
+     *
+     * @param algorithm 签名算法
+     * @param text 需要签名的字符串
+     * @param sign 客户签名结果
+     * @param publicKey 公钥(BASE64编码)
+     * @param charset 编码格式
+     * @return 验签结果
+     * @throws Exception 异常
      */
     private static boolean doVerify(Algorithm algorithm, String text, String sign, String publicKey, String charset) throws Exception {
         byte[] keyBytes = Base64.getDecoder().decode(publicKey);
@@ -184,6 +222,7 @@ public class RSASignUtil {
      * @param content origin content
      * @param charset get byte encoding
      * @return content bytes
+     * @throws UnsupportedEncodingException 异常
      */
     private static byte[] getContentBytes(String content, String charset) throws UnsupportedEncodingException {
         if (null == charset || "".equals(charset.trim())) {
@@ -194,6 +233,7 @@ public class RSASignUtil {
 
     /**
      * 把数组所有元素排序，并按照“参数=参数值”的模式用“&”字符拼接成字符串
+     *
      * @param params 需要排序并参与字符拼接的参数组
      * @return 拼接后字符串
      */

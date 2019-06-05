@@ -40,6 +40,7 @@ public class RSAUtil {
      * </p>
      *
      * @return KeyPair
+     * @throws Exception 异常
      */
     public static KeyPair generateKeyPair() throws Exception {
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(ALGORITHM);
@@ -77,54 +78,88 @@ public class RSAUtil {
 
     /**
      * 使用给定key, 对字符串数据按照指定编码, 进行加密
-     * @param key
-     * @param data
-     * @param charset
-     * @return
-     * @throws Exception
+     * @param key 加密私钥
+     * @param data 被加密内容
+     * @param charset 字符编码
+     * @return 加密后内容
+     * @throws Exception 异常
      */
     public static String encryptData(String key, String data, String charset) throws Exception {
         return encryptData(key, data, charset, true);
     }
 
+    /**
+     * 使用给定key, 对字符串数据按照指定编码, 进行加密
+     * @param key 加密私钥
+     * @param data 被加密内容
+     * @param charset 字符编码
+     * @param usePubKey 使用公钥
+     * @return 加密后内容
+     * @throws Exception 异常
+     */
     public static String encryptData(String key, String data, String charset, boolean usePubKey) throws Exception {
         byte[] dataBytes = data.getBytes(charset);
         byte[] encryptData = encryptData(key, dataBytes, usePubKey);
         return ByteUtil.byteToHex(encryptData);
     }
 
+    /**
+     * 使用给定key, 对字符串数据按照指定编码, 进行加密
+     * @param key 加密私钥
+     * @param content 被加密内容
+     * @param usePubKey 使用公钥
+     * @return 加密后内容
+     * @throws Exception 异常
+     */
     public static byte[] encryptData(String key, byte[] content, boolean usePubKey) throws Exception {
         return encrypt(content, buildKey(key, usePubKey));
     }
 
     /**
      * 使用给定key, 对字符串数据按照指定编码, 进行解密
-     * @param key
-     * @param data
-     * @param charset
-     * @return
-     * @throws Exception
+     * @param key 解密私钥
+     * @param data 解密内容
+     * @param charset 字符编码
+     * @return 解密结果
+     * @throws Exception 异常
      */
     public static String decryptData(String key, String data, String charset) throws Exception {
         return decryptData(key, data, charset, false);
     }
 
+    /**
+     * 使用给定key, 对字符串数据按照指定编码, 进行解密
+     * @param key 解密私钥
+     * @param data 解密内容
+     * @param charset 字符编码
+     * @param usePubKey 使用公钥
+     * @return 解密结果
+     * @throws Exception 异常
+     */
     public static String decryptData(String key, String data, String charset, boolean usePubKey) throws Exception {
         byte[] dataBytes = ByteUtil.hexTBytes(data.getBytes(charset));
         byte[] encryptData = decryptData(key, dataBytes, usePubKey);
         return new String(encryptData, charset);
     }
 
+    /**
+     * 使用给定key, 对字符串数据按照指定编码, 进行解密
+     * @param key 解密私钥
+     * @param content 解密内容
+     * @param usePubKey 使用公钥
+     * @return 解密结果
+     * @throws Exception 异常
+     */
     public static byte[] decryptData(String key, byte[] content, boolean usePubKey) throws Exception {
         return decrypt(content, buildKey(key, usePubKey));
     }
 
     /**
      * [公钥/私钥]加密
-     * @param content
+     * @param content 加密内容
      * @param key [PublicKey/PrivateKey]
-     * @return
-     * @throws Exception
+     * @return 加密结果
+     * @throws Exception 异常
      */
     private static byte[] encrypt(byte[] content, Key key) throws Exception {
         Cipher cipher = Cipher.getInstance(TRANSFORMATION);
@@ -134,10 +169,10 @@ public class RSAUtil {
 
     /**
      * [公钥/私钥]解密
-     * @param content
+     * @param content 解密内容
      * @param key [PublicKey/PrivateKey]
-     * @return
-     * @throws Exception
+     * @return 解密结果
+     * @throws Exception 异常
      */
     public static byte[] decrypt(byte[] content, Key key) throws Exception {
         Cipher cipher = Cipher.getInstance(TRANSFORMATION);
@@ -147,11 +182,11 @@ public class RSAUtil {
 
     /**
      * 根据原始密钥串构建key对象
-     * @param key
-     * @param isPubKey
-     * @return
-     * @throws NoSuchAlgorithmException
-     * @throws InvalidKeySpecException
+     * @param key [PublicKey/PrivateKey]
+     * @param isPubKey 使用公钥
+     * @return key对象
+     * @throws NoSuchAlgorithmException 异常
+     * @throws InvalidKeySpecException 异常
      */
     private static Key buildKey(String key, boolean isPubKey) throws NoSuchAlgorithmException, InvalidKeySpecException {
         byte[] keyByte = Base64.getDecoder().decode(key);

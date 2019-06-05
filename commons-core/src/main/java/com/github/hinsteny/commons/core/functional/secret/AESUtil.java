@@ -45,7 +45,8 @@ public class AESUtil {
 
     /**
      * 生成一个默认长度为128的AES key
-     * @return
+     * @return 秘钥
+     * @throws NoSuchAlgorithmException 异常
      */
     public static String generateAESKey() throws NoSuchAlgorithmException {
         return generateAESKey(DEFAULT_KEY_LENGTH);
@@ -54,7 +55,8 @@ public class AESUtil {
     /**
      * 指定秘钥长度, 生成AES key
      * @param keyLen AES秘钥长度可选值有[128, 192, 256]
-     * @return
+     * @return 秘钥
+     * @throws NoSuchAlgorithmException 异常
      */
     public static String generateAESKey(int keyLen) throws NoSuchAlgorithmException {
         byte[] keyByte = generateAESKeyByte(keyLen);
@@ -64,7 +66,8 @@ public class AESUtil {
     /**
      *
      * @param keyLen AES秘钥长度可选值有
-     * @return
+     * @return 秘钥
+     * @throws NoSuchAlgorithmException 异常
      */
     public static byte[] generateAESKeyByte(int keyLen) throws NoSuchAlgorithmException {
         AssertUtil.assertTrue(128 == keyLen || 192 == keyLen || 256 == keyLen, "AES key length is not correct");
@@ -86,7 +89,8 @@ public class AESUtil {
      *
      * @param content 需要加密的内容
      * @param key 加密秘钥
-     * @return
+     * @return 加密后的内容
+     * @throws Exception 异常
      */
     public static String encrypt(String content, String key) throws Exception {
         return encryptThenBase64(content, key, CHARCODE, DEFAULT_ALGORITHM);
@@ -98,7 +102,9 @@ public class AESUtil {
      * @param content 需要加密的内容
      * @param key 加密秘钥
      * @param charset 编码
-     * @return
+     * @param algorithm 加密算法
+     * @return 加密后的内容
+     * @throws Exception 异常
      */
     public static String encryptThenBase64(String content, String key, String charset, AlgorithmType algorithm) throws Exception {
         byte[] contentBytes = content.getBytes(charset);
@@ -113,7 +119,9 @@ public class AESUtil {
      * @param content 需要加密的内容
      * @param key 加密秘钥
      * @param charset 编码
-     * @return
+     * @param algorithm 加密算法
+     * @return 加密后的内容
+     * @throws Exception 异常
      */
     public static String encryptThenHex(String content, String key, String charset, AlgorithmType algorithm) throws Exception {
         byte[] contentBytes = content.getBytes(charset);
@@ -127,7 +135,9 @@ public class AESUtil {
      *
      * @param content 需要加密的内容
      * @param key 加密秘钥
-     * @return
+     * @param algorithm 加密算法
+     * @return 加密后的内容
+     * @throws Exception 异常
      */
     public static byte[] encryptBytes(byte[] content, byte[] key, AlgorithmType algorithm) throws Exception {
         AssertUtil.assertTrue(null != content && content.length != 0, "加密内容不能为空");
@@ -150,7 +160,8 @@ public class AESUtil {
      *
      * @param content 密文
      * @param key 密钥
-     * @return
+     * @return 解密后的内容
+     * @throws Exception 异常
      */
     public static String decrypt(String content, String key) throws Exception {
         return decryptAfterBase64Decode(content, key, CHARCODE, DEFAULT_ALGORITHM);
@@ -161,7 +172,10 @@ public class AESUtil {
      *
      * @param content 密文
      * @param key 密钥
-     * @return
+     * @param charset 编码
+     * @param algorithm 加密算法
+     * @return 解密后的内容
+     * @throws Exception 异常
      */
     public static String decryptAfterBase64Decode(String content, String key, String charset, AlgorithmType algorithm) throws Exception {
         AssertUtil.assertTrue(null != content && content.length() != 0, "解密内容不能为空");
@@ -177,7 +191,10 @@ public class AESUtil {
      *
      * @param content 密文
      * @param key 密钥
-     * @return
+     * @param charset 编码
+     * @param algorithm 加密算法
+     * @return 解密后的内容
+     * @throws Exception 异常
      */
     public static String decryptAfterHexDecode(String content, String key, String charset, AlgorithmType algorithm) throws Exception {
         AssertUtil.assertTrue(null != content && content.length() != 0, "解密内容不能为空");
@@ -193,7 +210,9 @@ public class AESUtil {
      *
      * @param content 密文
      * @param key 密钥
-     * @return
+     * @param algorithm 加密算法
+     * @return 解密后的内容
+     * @throws Exception 异常
      */
     public static byte[] decryptBytes(byte[] content, byte[] key, AlgorithmType algorithm) throws Exception {
         AssertUtil.assertTrue(null != content && content.length != 0, "解密内容不能为空");
@@ -211,6 +230,11 @@ public class AESUtil {
         return original;
     }
 
+    /**
+     * 判断所使用的加密算法是否需要向量
+     * @param algorithm 算法
+     * @return result
+     */
     private static boolean hasIv(AlgorithmType algorithm) {
         return AlgorithmType.AES_CBC_NOPADDING == algorithm || AlgorithmType.AES_CBC_PKCS5Padding == algorithm;
     }

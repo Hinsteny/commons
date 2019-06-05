@@ -15,31 +15,37 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * <p>DSA签名工具类</p>
+ * <p>ECDSA签名工具类</p>
  * <br>
  * <p>签名算法中公私钥及数据都是以字节的方式运作, 因此如果我们需要将公私钥导出时, 或者将签名完的数据存储完字符串, 都需要做防乱码编码, 这里默认使用BASE64</p>
  * <br>
- * <p>算法: 基于模幂运算和离散对数</p>
+ * <p>算法: 作为DSA的变体，基于椭圆曲线</p>
  *
  * @author Hinsteny
- * @version DSASignUtil: DSASignUtil 2019-06-04 10:14 All rights reserved.$
+ * @version ECDSASignUtil: ECDSASignUtil 2019-06-04 21:23 All rights reserved.$
  */
-public class DSASignUtil {
+public class ECDSASignUtil {
 
     /**
-     * 签名算法DSA
+     * 签名算法ECDSA
      */
-    private static final String KEY_ALGORITHM = "DSA";
+    private static final String KEY_ALGORITHM = "EC";
+
+    /**
+     * 秘钥锁支持的长度
+     */
+    private static final int[] KEY_SIZE = {571};
 
     /**
      * 签名算法
      */
     public enum Algorithm {
 
-        //限制被签名数据长度必须为20bytes, 常用于rawdata签名, 比如文件
-        NONEwithDSA("NONEwithDSA"),
-        // 不限制被签名数据长度
-        SHA1withDSA("SHA1withDSA"),
+        NONEwithECDSA("NONEwithECDSA"),
+        SHA1withECDSA("SHA1withECDSA"),
+        SHA256withECDSA("SHA256withECDSA"),
+        SHA384withECDSA("SHA384withECDSA"),
+        SHA512withECDSA("SHA512withECDSA"),
         ;
 
         private String algorithm;
@@ -63,7 +69,7 @@ public class DSASignUtil {
      */
     public static KeyPair generateKeyPair() throws Exception {
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(KEY_ALGORITHM);
-        keyPairGen.initialize(1024);
+        keyPairGen.initialize(KEY_SIZE[0]);
         KeyPair keyPair = keyPairGen.generateKeyPair();
         return keyPair;
     }
@@ -104,7 +110,7 @@ public class DSASignUtil {
      * @throws Exception 异常
      */
     public static String sign(Map<String, String> param, String privateKey, String charset) throws Exception {
-        return sign(Algorithm.SHA1withDSA, buildParam(param), privateKey, charset);
+        return sign(Algorithm.SHA256withECDSA, buildParam(param), privateKey, charset);
     }
 
     /**
@@ -131,7 +137,7 @@ public class DSASignUtil {
      * @throws Exception 异常
      */
     public static String sign(String text, String privateKey, String charset) throws Exception {
-        return doSign(Algorithm.SHA1withDSA, text, privateKey, charset);
+        return doSign(Algorithm.SHA256withECDSA, text, privateKey, charset);
     }
 
     /**
@@ -183,13 +189,13 @@ public class DSASignUtil {
      * @throws Exception 异常
      */
     public static boolean verify(String text, String sign, String publicKey, String charset) throws Exception {
-        return verify(Algorithm.SHA1withDSA, text, sign, publicKey, charset);
+        return verify(Algorithm.SHA256withECDSA, text, sign, publicKey, charset);
     }
 
     /**
      * 验签
      *
-     * @param algorithm 签名算法
+     * @param algorithm 验签算法
      * @param text 需要签名的字符串
      * @param sign 客户签名结果
      * @param publicKey 公钥(BASE64编码)
@@ -204,7 +210,7 @@ public class DSASignUtil {
     /**
      * 进行RSA验签
      *
-     * @param algorithm 签名算法
+     * @param algorithm 验签算法
      * @param text 需要签名的字符串
      * @param sign 客户签名结果
      * @param publicKey 公钥(BASE64编码)

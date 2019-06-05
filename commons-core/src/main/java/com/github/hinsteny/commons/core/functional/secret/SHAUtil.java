@@ -37,8 +37,9 @@ public class SHAUtil {
     /**
      * 对文本进行512分组计算最终生成40位的消息摘要
      *
-     * @param content
+     * @param content 被散列内容
      * @return 加密后的内容
+     * @throws NoSuchAlgorithmException 异常
      */
     public static String calculateSha1Val(String content) throws NoSuchAlgorithmException {
         return calculateSignVal(SignType.SHA1, content);
@@ -47,8 +48,9 @@ public class SHAUtil {
     /**
      * 对文本进行512分组计算最终生成56位的消息摘要
      *
-     * @param content
+     * @param content 被散列内容
      * @return 加密后的内容
+     * @throws NoSuchAlgorithmException 异常
      */
     public static String calculateSha224Val(String content) throws NoSuchAlgorithmException {
         return calculateSignVal(SignType.SHA224, content);
@@ -57,8 +59,9 @@ public class SHAUtil {
     /**
      * 对文本进行512分组计算最终生成64位的消息摘要
      *
-     * @param content
+     * @param content 被散列内容
      * @return 加密后的内容
+     * @throws NoSuchAlgorithmException 异常
      */
     public static String calculateSha256Val(String content) throws NoSuchAlgorithmException {
         return calculateSignVal(SignType.SHA256, content);
@@ -67,8 +70,9 @@ public class SHAUtil {
     /**
      * 对文本进行512分组计算最终生成96位的消息摘要
      *
-     * @param content
+     * @param content 被散列内容
      * @return 加密后的内容
+     * @throws NoSuchAlgorithmException 异常
      */
     public static String calculateSha384Val(String content) throws NoSuchAlgorithmException {
         return calculateSignVal(SignType.SHA384, content);
@@ -77,8 +81,9 @@ public class SHAUtil {
     /**
      * 对文本进行512分组计算最终生成128位的消息摘要
      *
-     * @param content
+     * @param content 被散列内容
      * @return 加密后的内容
+     * @throws NoSuchAlgorithmException 异常
      */
     public static String calculateSha512Val(String content) throws NoSuchAlgorithmException {
         return calculateSignVal(SignType.SHA512, content);
@@ -86,10 +91,10 @@ public class SHAUtil {
 
     /**
      * 根据指定的签名算法, 对输入内容进行签名
-     * @param type
-     * @param content
-     * @return
-     * @throws NoSuchAlgorithmException
+     * @param type 散列算法
+     * @param content 被散列内容
+     * @return 加密后的内容
+     * @throws NoSuchAlgorithmException 异常
      */
     private static String calculateSignVal (SignType type, String content) throws NoSuchAlgorithmException {
         MessageDigest sha1Encoder = MessageDigest.getInstance(type.getAlgorithm());

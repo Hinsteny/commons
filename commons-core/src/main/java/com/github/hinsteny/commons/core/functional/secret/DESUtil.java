@@ -11,10 +11,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
- * DES加解密算法工具
- * 加密用的Key 可以用若干个字母和数字组成，最好不要用保留字符
- * DES: DES-56-CBC加密模式，key需要为8位。
- * 3DES: DESede-168-CBC加密模式，key需要为24位。
+ * DES加解密算法工具 加密用的Key 可以用若干个字母和数字组成，最好不要用保留字符 DES: DES-56-CBC加密模式，key需要为8位。 3DES: DESede-168-CBC加密模式，key需要为24位。
  *
  * @author Hinsteny
  * @version DESUtil: DESUtil 2019-05-10 10:13 All rights reserved.$
@@ -67,26 +64,31 @@ public class DESUtil {
     }
 
     /**
-     * 生成一个AES加密私钥串
+     * 生成一个DES加密私钥串
      *
-     * @return
+     * @return 秘钥ken
+     * @throws Exception 异常
      */
     public static String generateDESKey() throws Exception {
         return generateDESKey(algorithms[0], DEFAULT_DES_KEY_LENGTH);
     }
 
     /**
-     * 生成一个AES加密私钥串
+     * 生成一个DES加密私钥串
      *
-     * @return
+     * @return 秘钥ken
+     * @throws Exception 异常
      */
     public static String generate3DESKey() throws Exception {
         return generateDESKey(algorithms[1], DEFAULT_3DES_KEY_LENGTH);
     }
 
     /**
+     * 生成一个DES加密私钥串
+     *
      * @param keyLen AES秘钥长度可选值有
-     * @return
+     * @return 秘钥ken
+     * @throws Exception 异常
      */
     private static String generateDESKey(String algorithm, int keyLen) throws Exception {
         if (!(DEFAULT_DES_KEY_LENGTH == keyLen || DEFAULT_3DES_KEY_LENGTH == keyLen)) {
@@ -107,8 +109,9 @@ public class DESUtil {
     /**
      * 判断key长度有效性
      *
-     * @param needKeyLen
-     * @return
+     * @param key 秘钥
+     * @param needKeyLen 秘钥长度
+     * @return result
      */
     private static boolean judgeKey(String key, int needKeyLen) {
         if (key == null || "".equals(key.trim())) {
@@ -123,8 +126,8 @@ public class DESUtil {
     /**
      * byte数组转化为16进制字符串
      *
-     * @param bytes
-     * @return
+     * @param bytes 字节
+     * @return 转化后的内容
      */
     public static String byteToHexString(byte[] bytes) {
         StringBuffer sb = new StringBuffer();
@@ -141,7 +144,8 @@ public class DESUtil {
      *
      * @param src 需要加密的内容
      * @param key 加密秘钥
-     * @return
+     * @return 加密结果
+     * @throws Exception 异常
      */
     public static String encrypt(String src, String key) throws Exception {
         judgeKey(key, 8);
@@ -153,7 +157,8 @@ public class DESUtil {
      *
      * @param src 需要加密的内容
      * @param key 加密秘钥
-     * @return
+     * @return 加密结果
+     * @throws Exception 异常
      */
     public static String encrypt3DES(String src, String key) throws Exception {
         judgeKey(key, 24);
@@ -165,7 +170,8 @@ public class DESUtil {
      *
      * @param src 密文
      * @param key 密钥
-     * @return
+     * @return 解密结果
+     * @throws Exception 异常
      */
     public static String decrypt(String src, String key) throws Exception {
         judgeKey(key, 8);
@@ -177,7 +183,8 @@ public class DESUtil {
      *
      * @param src 密文
      * @param key 密钥
-     * @return
+     * @return 解密结果
+     * @throws Exception 异常
      */
     public static String decrypt3DES(String src, String key) throws Exception {
         judgeKey(key, 24);
@@ -187,11 +194,12 @@ public class DESUtil {
     /**
      * 加密
      *
-     * @param src       需要加密的内容
-     * @param key       加密秘钥
+     * @param src 需要加密的内容
+     * @param key 加密秘钥
      * @param algorithm 加密所用算法
-     * @param charset   编码
-     * @return
+     * @param charset 编码
+     * @return 加密结果
+     * @throws Exception 异常
      */
     private static String encrypt(String src, String key, String algorithm, String charset) throws Exception {
         String afterCode;
@@ -209,9 +217,12 @@ public class DESUtil {
     /**
      * 解密
      *
-     * @param src 密文
-     * @param key 密钥
-     * @return
+     * @param src 需要解密的内容
+     * @param key 解密秘钥
+     * @param algorithm 解密所用算法
+     * @param charset 编码
+     * @return 解密结果
+     * @throws Exception 异常
      */
     private static String decrypt(String src, String key, String algorithm, String charset) throws Exception {
         String originalString;

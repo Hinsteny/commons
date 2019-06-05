@@ -14,9 +14,8 @@ public class AESUtilTest {
     @Test(testName = "使用AES工具对字符串进行加解密示例")
     public void testAesUtilEncryptAndDecryptToStr() throws Exception {
         String data = "走遍世界的心不能停...O(∩_∩)O哈哈~", key, secret, origin;
-        int keyLen = 128;
         key = AESUtil.generateAESKey();
-        System.out.println(String.format("key length %d: %s", keyLen, key));
+        System.out.println(String.format("key length %d: %s", key.length(), key));
         System.out.println("============== 默认AES加解密前后使用Base64加解码 ==============");
         secret = AESUtil.encrypt(data, key);
         System.out.println(String.format("encrypt data: %s, result: %s", data, secret));
@@ -34,7 +33,7 @@ public class AESUtilTest {
         String data = "走遍世界的心不能停...O(∩_∩)O哈哈~";
         int keyLen = 128;
         byte[] key = AESUtil.generateAESKeyByte(keyLen);
-        System.out.println(String.format("key length %d: %s", keyLen, key));
+        System.out.println(String.format("key length %d: %s", key.length, key));
         byte[] secret = AESUtil.encryptBytes(data.getBytes("UTF-8"), key, AlgorithmType.AES_ECB_NoPadding);
         System.out.println(String.format("encrypt data: %s, result: ", data) + ByteUtil.byteToStr(secret));
         byte[] origin = AESUtil.decryptBytes(secret, key, AlgorithmType.AES_ECB_NoPadding);

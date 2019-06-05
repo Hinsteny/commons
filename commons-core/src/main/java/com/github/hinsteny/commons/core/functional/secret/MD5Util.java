@@ -20,8 +20,10 @@ public class MD5Util {
     /**
      * 对文本进行32位小写MD5加密
      *
-     * @param text
-     * @return 加密后的内容
+     * @param text 签名内容
+     * @return 签名后的内容
+     * @throws NoSuchAlgorithmException 异常
+     * @throws UnsupportedEncodingException 异常
      */
     public static String sign(String text) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         return sign(text, DEFAULT_CHART_SET);
@@ -30,8 +32,11 @@ public class MD5Util {
     /**
      * 对文本进行32位小写MD5加密
      *
-     * @param text
+     * @param text 签名内容
+     * @param charset 字符编码
      * @return 加密后的内容
+     * @throws NoSuchAlgorithmException 异常
+     * @throws UnsupportedEncodingException 异常
      */
     public static String sign(String text, String charset) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         MessageDigest md5Encoder = MessageDigest.getInstance(MD5);
@@ -50,13 +55,12 @@ public class MD5Util {
     }
 
     /**
-     * @param content
-     * @param charset
-     * @return
-     * @throws SignatureException
-     * @throws UnsupportedEncodingException
+     * @param content 签名内容
+     * @param charset 字符编码
+     * @return 签名结果
+     * @throws UnsupportedEncodingException 异常
      */
-    private static byte[] getContentBytes(String content, String charset) throws UnsupportedEncodingException{
+    private static byte[] getContentBytes(String content, String charset) throws UnsupportedEncodingException {
         if (charset == null || "".equals(charset)) {
             return content.getBytes();
         }

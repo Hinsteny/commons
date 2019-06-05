@@ -17,10 +17,10 @@ public class Base64Util {
     private static String default_charset = "8859_1";
 
     /**
-     * 进行base64加码
-     * @param data
-     * @return
-     * @throws UnsupportedEncodingException
+     * 进行base64编码
+     * @param data 被编码内容
+     * @return 返回编码结果
+     * @throws UnsupportedEncodingException 不支持字符编码异常
      */
     public static String base64Encodes(String data) throws UnsupportedEncodingException {
         String charset = default_charset;
@@ -30,11 +30,11 @@ public class Base64Util {
     }
 
     /**
-     * 进行base64加码
-     * @param data
-     * @param charset
-     * @return
-     * @throws UnsupportedEncodingException
+     * 进行base64编码
+     * @param data 被加密内容
+     * @param charset 字符串编码
+     * @return 返回编码结果
+     * @throws UnsupportedEncodingException 不支持字符编码异常
      */
     public static String base64Encodes(String data, String charset) throws UnsupportedEncodingException {
         byte[] srcs = data.getBytes(charset);
@@ -43,10 +43,9 @@ public class Base64Util {
     }
 
     /**
-     * 进行base64加码
-     * @param data
-     * @return
-     * @throws UnsupportedEncodingException
+     * 进行base64编码
+     * @param data 被编码内容
+     * @return 返回编码结果
      */
     public static String base64Encodes(byte[] data) {
         byte[] dst = base64Encode(data);
@@ -54,10 +53,11 @@ public class Base64Util {
     }
 
     /**
-     * 进行base64加码
-     * @param data
-     * @return
-     * @throws UnsupportedEncodingException
+     * 进行base64编码
+     * @param data 被编码内容
+     * @param charset 字符串编码
+     * @return 返回编码结果
+     * @throws UnsupportedEncodingException 不支持字符编码异常
      */
     public static String base64Encodes(byte[] data, String charset) throws UnsupportedEncodingException {
         byte[] dst = base64Encode(data);
@@ -66,9 +66,9 @@ public class Base64Util {
 
     /**
      * 进行base64解码
-     * @param data
-     * @return
-     * @throws UnsupportedEncodingException
+     * @param data 被解码内容
+     * @return 返回解码结果
+     * @throws UnsupportedEncodingException 不支持字符编码异常
      */
     public static String base64Decodes(String data) throws UnsupportedEncodingException {
         String charset = default_charset;
@@ -79,10 +79,10 @@ public class Base64Util {
 
     /**
      * 进行base64解码
-     * @param data
-     * @param charset
-     * @return
-     * @throws UnsupportedEncodingException
+     * @param data 被解码内容
+     * @param charset 字符编码
+     * @return 返回解码结果
+     * @throws UnsupportedEncodingException 不支持字符编码异常
      */
     public static String base64Decode(String data, String charset) throws UnsupportedEncodingException {
         byte[] srcs = data.getBytes(charset);
@@ -92,9 +92,9 @@ public class Base64Util {
 
     /**
      * 进行base64解码
-     * @param data
-     * @return
-     * @throws UnsupportedEncodingException
+     * @param data 被解码内容
+     * @return 返回解码结果
+     * @throws UnsupportedEncodingException 不支持字符编码异常
      */
     public static String base64Decodes(byte[] data) throws UnsupportedEncodingException {
         byte[] dst = base64Decode(data);
@@ -103,10 +103,10 @@ public class Base64Util {
 
     /**
      * 进行base64解码
-     * @param data
-     * @param charset
-     * @return
-     * @throws UnsupportedEncodingException
+     * @param data 被解码内容
+     * @param charset 字符编码
+     * @return 返回解码结果
+     * @throws UnsupportedEncodingException 不支持字符编码异常
      */
     public static String base64Decodes(byte[] data, String charset) throws UnsupportedEncodingException {
         byte[] dst = base64Decode(data);
@@ -114,9 +114,9 @@ public class Base64Util {
     }
 
     /**
-     * 对字节数组进行base64加码
-     * @param data
-     * @return
+     * 对字节数组进行base64编码
+     * @param data 被编码内容
+     * @return 返回编码结果
      */
     public static byte[] base64Encode(byte[] data) {
         byte[] dst = Base64.getEncoder().encode(data);
@@ -125,8 +125,8 @@ public class Base64Util {
 
     /**
      * 对字节数组进行base64解码
-     * @param data
-     * @return
+     * @param data 被解码内容
+     * @return 返回解码结果
      */
     public static byte[] base64Decode(byte[] data) {
         byte[] dst = Base64.getDecoder().decode(data);
