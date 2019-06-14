@@ -22,6 +22,7 @@ mvn clean deploy -Dmaven.skip.test=true -X
 ## 功能描述
 
 * 常用签名及加解密工具类: Base64, MD5, DES, 3DES, DSA, ECDSA, RSA, SHARS;
+* 常见算法工具类实现: 二叉堆(堆排序)
 
 
 ## 引入使用
@@ -43,3 +44,15 @@ mvn clean deploy -Dmaven.skip.test=true -X
 ```
 
 3. 使用模块中的工具类
+
+```
+    String myMessage = "Hello Hinsteny. nice to see you!";
+    KeyPair keyPair = RSASignUtil.generateKeyPair();
+    String publicKey = RSASignUtil.getPublicKey(keyPair);
+    String privateKey = RSASignUtil.getPrivateKey(keyPair);
+    System.out.println("============== 默认RSA签名前后使用Base64加解码 ==============");
+    String sign = signWithRsa(myMessage, privateKey, DEFAULT_CHARSET);
+    System.out.println(String.format("sign data: %s, result: %s", myMessage, sign));
+    boolean verify = verifyWithRsa(myMessage, sign, publicKey, DEFAULT_CHARSET);
+    System.out.println("verify result: " + verify);
+```

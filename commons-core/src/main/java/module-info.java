@@ -8,6 +8,7 @@ module com.github.hinsteny.commons.core {
     requires java.desktop;
     requires org.apache.logging.log4j;
 
+    exports com.github.hinsteny.commons.core.algorithm.structure;
     exports com.github.hinsteny.commons.core.base;
     exports com.github.hinsteny.commons.core.functional.page;
     exports com.github.hinsteny.commons.core.functional.secret;
