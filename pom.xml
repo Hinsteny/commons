@@ -52,16 +52,17 @@
     <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
     <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
     <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+    <maven-javadoc-plugin.version>3.1.0</maven-javadoc-plugin.version>
+    <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+    <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
     <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
     <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
-    <maven-javadoc-plugin.version>3.1.0</maven-javadoc-plugin.version>
-    <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
-    <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
     <onejar-maven-plugin.version>1.4.4</onejar-maven-plugin.version>
     <maven-war-plugin.version>3.2.3</maven-war-plugin.version>
     <maven-site-plugin.version>3.5.1</maven-site-plugin.version>
     <maven-pmd-plugin.version>3.7</maven-pmd-plugin.version>
     <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
+    <jacoco-maven-plugin.version>0.8.4</jacoco-maven-plugin.version>
     <findbugs-maven-plugin.version>3.0.4</findbugs-maven-plugin.version>
     <maven-dependency-plugin.version>2.10</maven-dependency-plugin.version>
     <maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
@@ -186,6 +187,13 @@
           <version>${maven-javadoc-plugin.version}</version>
         </plugin>
 
+        <!-- jacoco -->
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco-maven-plugin.version}</version>
+        </plugin>
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
@@ -220,33 +228,6 @@
       <id>release</id>
       <build>
         <plugins>
-          <!-- nexus staging -->
-          <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>${nexus-staging-maven-plugin.version}</version>
-            <extensions>true</extensions>
-            <configuration>
-              <serverId>ossrh</serverId>
-              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>true</autoReleaseAfterClose>
-            </configuration>
-          </plugin>
-          <!-- maven release -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-release-plugin</artifactId>
-            <version>${maven-release-plugin.version}</version>
-            <configuration>
-              <autoVersionSubmodules>true</autoVersionSubmodules>
-              <useReleaseProfile>false</useReleaseProfile>
-              <releaseProfiles>release</releaseProfiles>
-              <goals>deploy</goals>
-              <pushChanges>false</pushChanges>
-              <mavenExecutorId>forked-path</mavenExecutorId>
-              <arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
-            </configuration>
-          </plugin>
           <!-- compiler -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -259,6 +240,7 @@
               <showWarnings>true</showWarnings>
             </configuration>
           </plugin>
+
           <!-- source -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -273,6 +255,7 @@
               </execution>
             </executions>
           </plugin>
+
           <!-- javadoc -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -292,6 +275,36 @@
               <docencoding>${project.build.sourceEncoding}</docencoding>
             </configuration>
           </plugin>
+
+          <!-- maven release -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-release-plugin</artifactId>
+            <version>${maven-release-plugin.version}</version>
+            <configuration>
+              <autoVersionSubmodules>true</autoVersionSubmodules>
+              <useReleaseProfile>false</useReleaseProfile>
+              <releaseProfiles>release</releaseProfiles>
+              <goals>deploy</goals>
+              <pushChanges>false</pushChanges>
+              <mavenExecutorId>forked-path</mavenExecutorId>
+              <arguments>-Dgpg.passphrase=${gpg.passphrase}</arguments>
+            </configuration>
+          </plugin>
+
+          <!-- nexus staging -->
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>${nexus-staging-maven-plugin.version}</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+
           <!-- gpg sign -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -300,7 +313,7 @@
             <executions>
               <execution>
                 <id>sign-artifacts</id>
-                <phase>verify</phase>
+                <phase>deploy</phase>
                 <goals>
                   <goal>sign</goal>
                 </goals>

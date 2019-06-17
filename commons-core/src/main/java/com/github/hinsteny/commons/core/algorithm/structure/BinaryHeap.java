@@ -36,7 +36,7 @@ public class BinaryHeap<E extends Comparable> implements Cloneable, java.io.Seri
      * The array buffer into which the elements of the BinaryHeap are stored. The capacity of the ArrayList is the length of this array buffer. Any empty ArrayList with heaps == EMPTY_ELEMENT_DATA
      * will be expanded to DEFAULT_CAPACITY when the first element is added.
      */
-    transient Object[] heaps;
+    private transient Object[] heaps;
 
     /**
      * The size of the BinaryHeap (the number of elements it contains).

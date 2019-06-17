@@ -6,7 +6,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SignatureException;
 
 /**
- * DM5签名工具类
+ * <p>DM5签名工具类</p>
+ * MD5(Message-Digest Algorithm)一种被广泛使用的密码散列函数，可以产生出一个128位（16字节）的散列值（hash value），用于确保信息传输完整一致。</br>
  *
  * @author Hinsteny
  * @version MD5Util: MD5Util 2019-05-10 10:14 All rights reserved.$

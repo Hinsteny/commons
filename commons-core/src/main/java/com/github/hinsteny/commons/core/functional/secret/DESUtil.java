@@ -113,12 +113,12 @@ public class DESUtil {
      * @param needKeyLen 秘钥长度
      * @return result
      */
-    private static boolean judgeKey(String key, int needKeyLen) {
+    private static boolean judgeKey(String key, int needKeyLen) throws Exception {
         if (key == null || "".equals(key.trim())) {
-            throw new RuntimeException("DES key is not valid");
+            throw new Exception("DES key is not valid");
         }
-        if (!(needKeyLen == key.length())) {
-            throw new RuntimeException("DES key length is not correct");
+        if (needKeyLen != key.length()) {
+            throw new Exception("DES key length is not correct");
         }
         return true;
     }

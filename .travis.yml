@@ -1,0 +1,8 @@
+language: groovy
+jdk:
+  - openjdk12
+before_script:
+  - echo "MAVEN_OPTS='-Xmx1024m -XX:MaxPermSize=256m'" > ~/.mavenrc
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+  - mvn clean cobertura:cobertura coveralls:report
