@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * zip file operate method utils
@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class ZipFileUtil {
 
-    private static final Logger LOGGER = LogManager.getLogger(ZipFileUtil.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ZipFileUtil.class);
 
     private static final String ZIP = ".zip";
 

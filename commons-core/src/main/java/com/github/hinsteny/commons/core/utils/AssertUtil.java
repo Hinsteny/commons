@@ -10,6 +10,22 @@ import com.github.hinsteny.commons.core.functional.page.PageCondition;
 public abstract class AssertUtil {
 
     /**
+     *  断言对象不为空
+     * @param object 被断言对象
+     * @param name name
+     */
+    public static void notNull(Object object, String name) {
+        if (object == null) {
+            throw new IllegalStateException(name + " is null");
+        }
+    }
+
+    public static void notBlank(String str, String name) {
+        if (StringUtil.isBlank(str)) {
+            throw new IllegalStateException(name + " is blank");
+        }
+    }
+    /**
      * 断言分页对象是否合法
      *
      * @param pageCondition 需要检查的对象

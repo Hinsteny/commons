@@ -21,8 +21,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 图片裁剪, 变形, 加水印工具类
@@ -32,7 +32,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class ImageUtil {
 
-    private static final Logger LOGGER = LogManager.getLogger(ImageUtil.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ImageUtil.class);
 
     /**
      * 缩放图像至 指定的高度和宽度

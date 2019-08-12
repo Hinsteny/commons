@@ -2,8 +2,8 @@ package com.github.hinsteny.commons.core.utils;
 
 import java.util.Collection;
 import java.util.Iterator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 字符串相关操作方法工具类
@@ -13,7 +13,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class StringUtil {
 
-    private static final Logger LOGGER = LogManager.getLogger(StringUtil.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(StringUtil.class);
 
     public static final String EMPTY = "";
 
@@ -23,6 +23,76 @@ public class StringUtil {
      * 敏感信息脱敏默认替换字符
      */
     private static final Character CONCEAL_CHAR = '*';
+
+    /**
+     * Check that the given CharSequence is neither <code>null</code> nor of length 0.
+     * Note: Will return <code>true</code> for a CharSequence that purely consists of whitespace.
+     * <p><pre>
+     * StringUtils.hasLength(null) = false
+     * StringUtils.hasLength("") = false
+     * StringUtils.hasLength(" ") = true
+     * StringUtils.hasLength("Hello") = true
+     * </pre>
+     * @param str the CharSequence to check (may be <code>null</code>)
+     * @return <code>true</code> if the CharSequence is not null and has length
+     * @see #hasText(String)
+     */
+    public static boolean hasLength(CharSequence str) {
+        return (str != null && str.length() > 0);
+    }
+
+    /**
+     * Check that the given String is neither <code>null</code> nor of length 0.
+     * Note: Will return <code>true</code> for a String that purely consists of whitespace.
+     * @param str the String to check (may be <code>null</code>)
+     * @return <code>true</code> if the String is not null and has length
+     * @see #hasLength(CharSequence)
+     */
+    public static boolean hasLength(String str) {
+        return hasLength((CharSequence) str);
+    }
+
+    /**
+     * Check whether the given CharSequence has actual text.
+     * More specifically, returns <code>true</code> if the string not <code>null</code>,
+     * its length is greater than 0, and it contains at least one non-whitespace character.
+     * <p><pre>
+     * StringUtils.hasText(null) = false
+     * StringUtils.hasText("") = false
+     * StringUtils.hasText(" ") = false
+     * StringUtils.hasText("12345") = true
+     * StringUtils.hasText(" 12345 ") = true
+     * </pre>
+     * @param str the CharSequence to check (may be <code>null</code>)
+     * @return <code>true</code> if the CharSequence is not <code>null</code>,
+     * its length is greater than 0, and it does not contain whitespace only
+     * @see java.lang.Character#isWhitespace
+     */
+    public static boolean hasText(CharSequence str) {
+        if (!hasLength(str)) {
+            return false;
+        }
+        int strLen = str.length();
+        for (int i = 0; i < strLen; i++) {
+            if (!Character.isWhitespace(str.charAt(i))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Check whether the given String has actual text.
+     * More specifically, returns <code>true</code> if the string not <code>null</code>,
+     * its length is greater than 0, and it contains at least one non-whitespace character.
+     * @param str the String to check (may be <code>null</code>)
+     * @return <code>true</code> if the String is not <code>null</code>, its length is
+     * greater than 0, and it does not contain whitespace only
+     * @see #hasText(CharSequence)
+     */
+    public static boolean hasText(String str) {
+        return hasText((CharSequence) str);
+    }
 
     /**
      * <p>Replace sensitive substring with mark char to one string.</p>
@@ -388,6 +458,65 @@ public class StringUtil {
             sb.append(strHex.charAt(0));
         }
         return  sb.toString();
+    }
+
+    /**
+     * Split a String at the first occurrence of the delimiter.
+     * Does not include the delimiter in the result.
+     * @param toSplit the string to split
+     * @param delimiter to split the string up with
+     * @return a two element array with index 0 being before the delimiter, and
+     * index 1 being after the delimiter (neither element includes the delimiter);
+     * or <code>null</code> if the delimiter wasn't found in the given input String
+     */
+    public static String[] split(String toSplit, String delimiter) {
+        if (!hasLength(toSplit) || !hasLength(delimiter)) {
+            return null;
+        }
+        int offset = toSplit.indexOf(delimiter);
+        if (offset < 0) {
+            return null;
+        }
+        String beforeDelimiter = toSplit.substring(0, offset);
+        String afterDelimiter = toSplit.substring(offset + delimiter.length());
+        return new String[] {beforeDelimiter, afterDelimiter};
+    }
+
+    /**
+     * Capitalize a <code>String</code>, changing the first letter to
+     * upper case as per {@link Character#toUpperCase(char)}.
+     * No other letters are changed.
+     * @param str the String to capitalize, may be <code>null</code>
+     * @return the capitalized String, <code>null</code> if null
+     */
+    public static String capitalize(String str) {
+        return changeFirstCharacterCase(str, true);
+    }
+
+    /**
+     * Uncapitalize a <code>String</code>, changing the first letter to
+     * lower case as per {@link Character#toLowerCase(char)}.
+     * No other letters are changed.
+     * @param str the String to uncapitalize, may be <code>null</code>
+     * @return the uncapitalized String, <code>null</code> if null
+     */
+    public static String uncapitalize(String str) {
+        return changeFirstCharacterCase(str, false);
+    }
+
+    private static String changeFirstCharacterCase(String str, boolean capitalize) {
+        if (str == null || str.length() == 0) {
+            return str;
+        }
+        StringBuilder sb = new StringBuilder(str.length());
+        if (capitalize) {
+            sb.append(Character.toUpperCase(str.charAt(0)));
+        }
+        else {
+            sb.append(Character.toLowerCase(str.charAt(0)));
+        }
+        sb.append(str.substring(1));
+        return sb.toString();
     }
 
 }

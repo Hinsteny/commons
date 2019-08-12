@@ -77,6 +77,9 @@
     <log4j2.version>2.11.2</log4j2.version>
     <jaxb-api.version>2.3.1</jaxb-api.version>
     <apache.poi.version>4.1.0</apache.poi.version>
+    <httpclient.version>4.5.9</httpclient.version>
+    <fastjson.version>1.2.59</fastjson.version>
+    <guava.version>28.0-jre</guava.version>
 
   </properties>
 
@@ -127,7 +130,30 @@
         <version>${apache.poi.version}</version>
         <scope>provided</scope>
       </dependency>
-      <!-- #excel读写相关jar -->
+
+      <!-- http client -->
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${httpclient.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- fastjson -->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>${fastjson.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- guava -->
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${guava.version}</version>
+        <scope>provided</scope>
+      </dependency>
 
     </dependencies>
   </dependencyManagement>

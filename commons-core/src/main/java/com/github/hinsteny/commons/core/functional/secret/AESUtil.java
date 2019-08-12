@@ -1,6 +1,7 @@
 package com.github.hinsteny.commons.core.functional.secret;
 
 import com.github.hinsteny.commons.core.utils.AssertUtil;
+import com.github.hinsteny.commons.core.utils.ByteUtil;
 import com.github.hinsteny.commons.core.utils.StringUtil;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
@@ -9,9 +10,8 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import com.github.hinsteny.commons.core.utils.ByteUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * AES加解密算法
@@ -23,7 +23,7 @@ import com.github.hinsteny.commons.core.utils.ByteUtil;
  */
 public class AESUtil {
 
-    private static final Logger LOGGER = LogManager.getLogger(AESUtil.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(AESUtil.class);
 
     /** 编码类型 */
     private static final String CHARCODE = "UTF-8";

@@ -10,8 +10,16 @@ module com.github.hinsteny.commons.warp {
 
     requires com.github.hinsteny.commons.core;
 
-    requires org.apache.logging.log4j;
+    requires slf4j.api;
 
     requires poi;
     requires poi.ooxml;
+
+    requires org.apache.httpcomponents.httpclient;
+    requires org.apache.httpcomponents.httpcore;
+
+    requires fastjson;
+
+    requires com.google.common;
+
 }

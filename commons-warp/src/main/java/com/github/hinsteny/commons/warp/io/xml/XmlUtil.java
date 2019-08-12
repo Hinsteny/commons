@@ -9,8 +9,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 基于JAXB(Java Architecture for XML Binding)实现的对象与xml转化工具类
@@ -19,7 +19,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class XmlUtil {
 
-    private static final Logger LOGGER = LogManager.getLogger(XmlUtil.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(XmlUtil.class);
 
     private static final String XML_DEFAULT_ENCODING = "UTF-8";
 

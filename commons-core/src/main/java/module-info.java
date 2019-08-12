@@ -6,7 +6,7 @@
 module com.github.hinsteny.commons.core {
 
     requires java.desktop;
-    requires org.apache.logging.log4j;
+    requires slf4j.api;
 
     exports com.github.hinsteny.commons.core.algorithm.structure;
     exports com.github.hinsteny.commons.core.base;
@@ -15,5 +15,6 @@ module com.github.hinsteny.commons.core {
     exports com.github.hinsteny.commons.core.io.csv;
     exports com.github.hinsteny.commons.core.io.image;
     exports com.github.hinsteny.commons.core.utils;
+    exports com.github.hinsteny.commons.core.exception;
 
 }
