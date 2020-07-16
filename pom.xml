@@ -6,7 +6,7 @@
 
   <groupId>com.github.hinsteny</groupId>
   <artifactId>commons-parent</artifactId>
-  <version>${version}</version>
+  <version>${revision}</version>
 
   <modules>
     <module>commons-core</module>
@@ -46,7 +46,7 @@
     <maven.compiler.target>12</maven.compiler.target>
     <jm.build.jvmsize>1024m</jm.build.jvmsize>
     <jm.maven.version>3.6.0</jm.maven.version>
-    <version>0.0.4-SNAPSHOT</version>
+    <revision>0.0.4-SNAPSHOT</revision>
     <!-- dependency plugin version -->
     <number-maven-plugin.version>1.4</number-maven-plugin.version>
     <maven-assembly-plugin.version>3.1.0</maven-assembly-plugin.version>

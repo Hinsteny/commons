@@ -41,8 +41,8 @@ public class BigDecimalUtil {
     /**
      * 格式化浮点数
      *
-     * @param value 输入值
-     * @param point 小数位数
+     * @param value        输入值
+     * @param point        小数位数
      * @param roundingMode 舍位方式
      * @return result
      */
@@ -77,14 +77,14 @@ public class BigDecimalUtil {
      * @return result
      */
     public static String formatRoundUp(double value, int point) {
-        return formatRoundUp(new BigDecimal(value), point, RoundingMode.HALF_UP);
+          return formatRoundUp(new BigDecimal(value), point, RoundingMode.HALF_UP);
     }
 
     /**
      * 格式化浮点数
      *
-     * @param value 输入值
-     * @param point 小数位数
+     * @param value        输入值
+     * @param point        小数位数
      * @param roundingMode 舍位方式
      * @return result
      */
@@ -108,7 +108,7 @@ public class BigDecimalUtil {
     /**
      * BigDecimal 相数
      *
-     * @param subtrahend 减数
+     * @param subtrahend   减数
      * @param bySubtrahend 被加数
      * @return result
      */
@@ -121,7 +121,7 @@ public class BigDecimalUtil {
     /**
      * BigDecimal 相乘
      *
-     * @param multiplier 减数
+     * @param multiplier   减数
      * @param multiplicand 被加数
      * @return result
      */
@@ -134,7 +134,7 @@ public class BigDecimalUtil {
     /**
      * BigDecimal 相乘
      *
-     * @param divisor 减数
+     * @param divisor  减数
      * @param dividend 被加数
      * @return result
      */
@@ -147,12 +147,12 @@ public class BigDecimalUtil {
     /**
      * BigDecimal 相比较
      *
-     * @param former  前者
-     * @param latter  后者
+     * @param former 前者
+     * @param latter 后者
      * @return result
      */
-    public int compare(double former , double latter) {
-        BigDecimal m = new BigDecimal(Double.toString(former ));
+    public int compare(double former, double latter) {
+        BigDecimal m = new BigDecimal(Double.toString(former));
         BigDecimal n = new BigDecimal(Double.toString(latter));
         return m.compareTo(n);
     }

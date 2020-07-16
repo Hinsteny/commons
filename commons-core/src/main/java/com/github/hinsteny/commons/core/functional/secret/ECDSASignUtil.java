@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 /**
- * <p>ECDSA签名工具类</p>
+ * <p>ECDSA签名工具类</p>.
  * <br>
  * <p>签名算法中公私钥及数据都是以字节的方式运作, 因此如果我们需要将公私钥导出时, 或者将签名完的数据存储完字符串, 都需要做防乱码编码, 这里默认使用BASE64</p>
  * <br>
@@ -39,6 +39,7 @@ public class ECDSASignUtil {
     /**
      * 签名算法
      */
+    @SuppressWarnings("AlibabaEnumConstantsMustHaveComment")
     public enum Algorithm {
 
         NONEwithECDSA("NONEwithECDSA"),
