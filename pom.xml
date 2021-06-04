@@ -81,7 +81,7 @@
     <commons-collections4.version>4.4</commons-collections4.version>
     <spring-framework.version>5.2.8.RELEASE</spring-framework.version>
     <apache-poi.version>4.1.0</apache-poi.version>
-    <httpclient.version>4.5.9</httpclient.version>
+    <httpclient.version>4.5.13</httpclient.version>
     <fastjson.version>1.2.59</fastjson.version>
     <guava.version>28.0-jre</guava.version>
 
