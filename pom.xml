@@ -76,7 +76,7 @@
     <testng.version>6.14.3</testng.version>
 
     <slf4j-api.version>1.7.25</slf4j-api.version>
-    <log4j2.version>2.11.2</log4j2.version>
+    <log4j2.version>2.16.0</log4j2.version>
     <jaxb-api.version>2.3.1</jaxb-api.version>
     <commons-collections4.version>4.4</commons-collections4.version>
     <spring-framework.version>5.2.8.RELEASE</spring-framework.version>
